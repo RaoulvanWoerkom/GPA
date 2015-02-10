@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 namespace XNAInvaders
 {
     /// <summary>
+    /// Hello
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Game
