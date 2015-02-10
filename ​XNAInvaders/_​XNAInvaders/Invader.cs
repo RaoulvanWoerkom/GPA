@@ -15,7 +15,9 @@ namespace __XNAInvaders
         public Invader() { }
 
         void Init()
-        { }
+        { 
+        // hello
+        }
 
         void update()
         { }
