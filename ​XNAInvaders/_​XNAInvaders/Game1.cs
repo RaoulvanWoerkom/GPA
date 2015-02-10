@@ -18,6 +18,7 @@ namespace XNAInvaders
         SpriteBatch spriteBatch;
         Texture2D background, scanlines;
 
+        //Test comment
         Player thePlayer;
         //TODO: Add multiple invaders here
 
