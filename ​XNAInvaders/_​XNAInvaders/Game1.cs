@@ -1,30 +1,36 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.GamerServices;
 
-namespace _​XNAInvaders
+namespace XNAInvaders
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D background, scanlines;
+
+        Player thePlayer;
+        //TODO: Add multiple invaders here
 
         public Game1()
+            : base()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);            
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
+ 
             Content.RootDirectory = "Content";
         }
-        
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -33,30 +39,18 @@ namespace _​XNAInvaders
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Pass often referenced variables to Global
+            Global.GraphicsDevice = GraphicsDevice;            
+            Global.content = Content;
 
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
+            // Create and Initialize game objects
+            thePlayer = new Player();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
+            Global.spriteBatch = spriteBatch;
+            background = Content.Load<Texture2D>("background");
+            scanlines = Content.Load<Texture2D>("scanlines");
+            base.Initialize();
         }
 
         /// <summary>
@@ -66,12 +60,11 @@ namespace _​XNAInvaders
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            // Pass keyboard state to Global so we can use it everywhere
+            Global.keys = Keyboard.GetState();
 
-            // TODO: Add your update logic here
-
+            // Update the game objects
+            thePlayer.Update();
             base.Update(gameTime);
         }
 
@@ -80,10 +73,16 @@ namespace _​XNAInvaders
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+        {            
+            spriteBatch.Begin();
+            // Draw the background (and clear the screen)
+            spriteBatch.Draw(background, Global.screenRect, Color.White);
 
-            // TODO: Add your drawing code here
+            // Draw the game objects
+            thePlayer.Draw();
+
+            spriteBatch.Draw(scanlines, Global.screenRect, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
