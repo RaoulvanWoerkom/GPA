@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _​XNAInvaders
+namespace ​XNAInvaders 
 {
     #if WINDOWS || XBOX
     static class Program
@@ -12,7 +12,7 @@ namespace _​XNAInvaders
         {
             using (Game1 game = new Game1())
             {
-                game.Run();
+                game.Run(); // Run game
             }
         }
     }
