@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _​XNAInvaders
+namespace XNAInvaders
 {
     #if WINDOWS || XBOX
     static class Program
