@@ -4,23 +4,34 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace __XNAInvaders
+namespace XNAInvaders
 {
     class Invader
     {
-        public Vector2 position;
-        public Vector2 velocity;
+        Vector2 position;
+        Vector2 velocity;
+        Texture2D texture;
 
-        public Invader() { }
+        public Invader theInvader;
+
+        public Invader() {
+            texture = Global.content.Load<Texture2D>("red_invader");
+
+            Init();
+        }
 
         void Init()
         { 
-        // hello
+        
         }
 
         void update()
         { }
-        void Draw() { }
+        void Draw() {
+            Global.spriteBatch.Draw(texture, position, Color.White);
+            theInvader.Draw();
+        }
     }
 }
