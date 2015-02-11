@@ -56,8 +56,8 @@ namespace XNAInvaders
         {
             float width = texture.Width;
             float height = texture.Height;
-            float invaderWidth;// = anInvader.texture.Width;
-            float invaderHeight;// = anInvader.texture.Height;
+            float invaderWidth = 0;// = anInvader.texture.Width;
+            float invaderHeight = 0;// = anInvader.texture.Height;
 
             if (position.X > anInvader.position.X + invaderWidth || position.X + texture.Width < anInvader.position.X ||
                 position.Y > anInvader.position.Y + invaderHeight || position.Y + texture.Height < anInvader.position.Y)
