@@ -14,13 +14,13 @@ namespace __XNAInvaders
 
         public Invader() { }
 
-        void Init()
+        public void Init()
         { 
         // hello
         }
 
-        void update()
+        public void Update()
         { }
-        void Draw() { }
+        public void Draw() { }
     }
 }
