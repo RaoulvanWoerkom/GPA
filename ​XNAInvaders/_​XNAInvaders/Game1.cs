@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.GamerServices;
+using __XNAInvaders;
 
 namespace XNAInvaders
 {
@@ -19,7 +20,7 @@ namespace XNAInvaders
         Texture2D background, scanlines;
 
         Player thePlayer;
-        //TODO: Add multiple invaders here
+        private List<Invader> invaders;
 
         public Game1()
             : base()
@@ -45,6 +46,7 @@ namespace XNAInvaders
 
             // Create and Initialize game objects
             thePlayer = new Player();
+            invaders = new List<Invader>();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Global.spriteBatch = spriteBatch;
@@ -65,6 +67,21 @@ namespace XNAInvaders
 
             // Update the game objects
             thePlayer.Update();
+
+            for (int i = 0; i < invaders.Count; i++)
+            {
+                Invader anInvader = invaders[i];
+                anInvader.Update();
+
+                Bullet bullet = thePlayer.theBullet;
+                if (bullet.OverlapsInvader(anInvader))
+                {
+                    bullet.Init();
+                    anInvader.Init();
+                }
+
+            }
+
             base.Update(gameTime);
         }
 
@@ -80,6 +97,11 @@ namespace XNAInvaders
 
             // Draw the game objects
             thePlayer.Draw();
+
+            for (int i = 0; i < invaders.Count; i++)
+            {
+                invaders[i].Draw();
+            }
 
             spriteBatch.Draw(scanlines, Global.screenRect, Color.White);
             spriteBatch.End();

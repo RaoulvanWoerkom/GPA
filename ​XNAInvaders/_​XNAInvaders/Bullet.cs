@@ -5,6 +5,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using __XNAInvaders;
 
 namespace XNAInvaders
 {
@@ -27,7 +28,7 @@ namespace XNAInvaders
         public void Init()
         {
             position.X = -1000;
-            speed = -5;
+            speed = -15;
             isFired = false;
         }
 
@@ -51,9 +52,18 @@ namespace XNAInvaders
             Global.spriteBatch.Draw(texture, position, Color.White);
         }
 
-//        public Boolean OverlapsInvader(Invader anInvader)
-//        {
-//        }
+        public Boolean OverlapsInvader(Invader anInvader)
+        {
+            float width = texture.Width;
+            float height = texture.Height;
+            float invaderWidth = 0;// = anInvader.texture.Width;
+            float invaderHeight = 0;// = anInvader.texture.Height;
+
+            if (position.X > anInvader.position.X + invaderWidth || position.X + texture.Width < anInvader.position.X ||
+                position.Y > anInvader.position.Y + invaderHeight || position.Y + texture.Height < anInvader.position.Y)
+                return false;
+            else return true;
+        }
 
     }
 }
