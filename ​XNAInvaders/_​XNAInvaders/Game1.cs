@@ -21,6 +21,7 @@ namespace XNAInvaders
 
         Player thePlayer;
         private List<Invader> invaders;
+        private Mothership mothership;
 
         public Game1()
             : base()
@@ -47,6 +48,8 @@ namespace XNAInvaders
             // Create and Initialize game objects
             thePlayer = new Player();
             invaders = new List<Invader>();
+            mothership = new Mothership();
+            mothership.Init();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Global.spriteBatch = spriteBatch;
@@ -67,6 +70,8 @@ namespace XNAInvaders
 
             // Update the game objects
             thePlayer.Update();
+            mothership.Update();
+            //Mothership collision here?
 
             for (int i = 0; i < invaders.Count; i++)
             {
@@ -97,6 +102,7 @@ namespace XNAInvaders
 
             // Draw the game objects
             thePlayer.Draw();
+            mothership.Draw();
 
             for (int i = 0; i < invaders.Count; i++)
             {
