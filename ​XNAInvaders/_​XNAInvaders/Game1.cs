@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.GamerServices;
-using __XNAInvaders;
+using XNAInvaders;
 
 namespace XNAInvaders
 {
@@ -71,7 +71,7 @@ namespace XNAInvaders
             for (int i = 0; i < invaders.Count; i++)
             {
                 Invader anInvader = invaders[i];
-                anInvader.Update();
+                anInvader.update();
 
                 Bullet bullet = thePlayer.theBullet;
                 if (bullet.OverlapsInvader(anInvader))

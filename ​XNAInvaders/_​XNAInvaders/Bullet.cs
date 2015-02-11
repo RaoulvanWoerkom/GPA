@@ -5,7 +5,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using __XNAInvaders;
+using XNAInvaders;
 
 namespace XNAInvaders
 {

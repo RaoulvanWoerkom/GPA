@@ -10,7 +10,7 @@ namespace XNAInvaders
 {
     class Invader
     {
-        public Vector2 position;
+        Vector2 position;
         Vector2 velocity;
         Texture2D texture;
 
@@ -27,11 +27,15 @@ namespace XNAInvaders
         
         }
 
-        public void update()
+        public void Update()
         { }
-        public void Draw() {
+<<<<<<< HEAD
+        void Draw() {
             Global.spriteBatch.Draw(texture, position, Color.White);
             theInvader.Draw();
         }
+=======
+        public void Draw() { }
+>>>>>>> 7e60bb246a50a94a387cfdd8dc0006cda6808591
     }
 }
